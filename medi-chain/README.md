@@ -1,6 +1,14 @@
 # MediChain - Blockchain-based Medical Records Management
+## 🏆 ALU Blockchain Summative Project - COMPLETED
 
 MediChain is a decentralized application (DApp) that provides secure and private management of medical records using blockchain technology. This solution addresses the challenges of fragmented and insecure medical records by giving patients control over their health data while enabling secure sharing with healthcare providers.
+
+## 📊 Project Status
+- ✅ **Smart Contract**: Complete with 100% test coverage
+- ✅ **Frontend Application**: Fully functional React/TypeScript app
+- ✅ **Documentation**: Comprehensive project documentation
+- ✅ **Testing**: 16 test cases, all passing
+- ✅ **Deployment Ready**: Configured for Sepolia testnet
 
 ## Features
 
