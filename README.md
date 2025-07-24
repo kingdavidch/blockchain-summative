@@ -512,12 +512,6 @@ We welcome contributions from the community! Here's how you can help:
 - 💡 Submit feature requests via GitHub issues
 - 🤝 Join discussions in the community forum
 
-#### **Professional Support**
-For enterprise deployments and custom development:
-- 📧 Email: [Contact Information]
-- 💼 LinkedIn: [Professional Profile]
-- 🌐 Website: [Project Website]
-
 ---
 
 ## 📄 License
