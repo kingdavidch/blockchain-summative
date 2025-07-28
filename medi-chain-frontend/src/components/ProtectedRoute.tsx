@@ -13,7 +13,7 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   if (!isConnected) {
     return (
       <Flex minH="70vh" align="center" justify="center">
-        <VStack spacing={6} p={8} bg="white" rounded="xl" shadow="md">
+        <VStack gap={6} p={8} bg="white" rounded="xl" shadow="md">
           <Text fontSize="xl" fontWeight="semibold">
             Connect Your Wallet to Continue
           </Text>

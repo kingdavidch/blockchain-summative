@@ -40,7 +40,7 @@ class ErrorBoundary extends Component<Props, State> {
 
       return (
         <Box p={8} maxW="container.md" mx="auto">
-          <VStack spacing={6} textAlign="center">
+          <VStack gap={6} textAlign="center">
             <Heading size="xl" color="red.500">
               Something went wrong
             </Heading>

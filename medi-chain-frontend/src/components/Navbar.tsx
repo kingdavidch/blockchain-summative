@@ -20,13 +20,13 @@ const Navbar = () => {
   return (
     <Box borderBottom="1px" borderColor={borderColor} bg={bg} position="sticky" top={0} zIndex={10}>
       <Flex h={16} alignItems="center" justifyContent="space-between" maxW="7xl" mx="auto" px={4}>
-        <HStack spacing={8} alignItems="center">
+        <HStack gap={8} alignItems="center">
           <RouterLink to="/">
             <Text fontSize="xl" fontWeight="bold" color="brand.500">
               MediChain
             </Text>
           </RouterLink>
-          <HStack as="nav" spacing={4} display={{ base: 'none', md: 'flex' }}>
+          <HStack as="nav" gap={4} display={{ base: 'none', md: 'flex' }}>
             {navLinks.map((link) => (
               <Link
                 key={link.path}
@@ -51,7 +51,7 @@ const Navbar = () => {
 
         <Flex alignItems="center">
           {isConnected ? (
-            <HStack spacing={4}>
+            <HStack gap={4}>
               <Button
                 as="a"
                 href={`https://sepolia.etherscan.io/address/${account}`}

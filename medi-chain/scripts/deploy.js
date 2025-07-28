@@ -10,15 +10,15 @@ async function main() {
   const [deployer] = await hre.ethers.getSigners();
 
   console.log("Deploying contracts with the account:", deployer.address);
-  console.log("Account balance:", (await deployer.getBalance()).toString());
+  console.log("Account balance:", hre.ethers.formatEther(await hre.ethers.provider.getBalance(deployer.address)));
 
   // Deploy the contract
   const MedicalRecords = await hre.ethers.getContractFactory("MedicalRecords");
-  const medicalRecords = await MedicalRecords.deploy(deployer.address);
+  const medicalRecords = await MedicalRecords.deploy();
 
-  await medicalRecords.deployed();
+  await medicalRecords.waitForDeployment();
 
-  console.log("MedicalRecords deployed to:", medicalRecords.address);
+  console.log("MedicalRecords deployed to:", await medicalRecords.getAddress());
 }
 
 // We recommend this pattern to be able to use async/await everywhere

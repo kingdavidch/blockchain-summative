@@ -117,7 +117,7 @@ const Dashboard = () => {
           </CardHeader>
           <CardBody>
             {recordsCount > 0 ? (
-              <VStack spacing={4} align="stretch">
+              <VStack gap={4} align="stretch">
                 {[...Array(Math.min(3, recordsCount))].map((_, i) => (
                   <Box
                     key={i}
@@ -134,7 +134,7 @@ const Dashboard = () => {
                 ))}
               </VStack>
             ) : (
-              <VStack spacing={4} py={8}>
+              <VStack gap={4} py={8}>
                 <Text color="gray.500" textAlign="center">
                   You don't have any medical records yet.
                 </Text>
@@ -151,7 +151,7 @@ const Dashboard = () => {
             <Heading size="md">Quick Actions</Heading>
           </CardHeader>
           <CardBody>
-            <VStack spacing={4} align="stretch">
+            <VStack gap={4} align="stretch">
               <Button
                 as={RouterLink}
                 to="/records/new"

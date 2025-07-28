@@ -144,7 +144,7 @@ const RequestAccess = () => {
         </CardHeader>
         <CardBody>
           <form onSubmit={handleRequestAccess}>
-            <VStack spacing={6} align="stretch">
+            <VStack gap={6} align="stretch">
               <FormControl isRequired>
                 <FormLabel>Patient's Ethereum Address</FormLabel>
                 <Input
@@ -167,7 +167,7 @@ const RequestAccess = () => {
               <Button
                 type="submit"
                 colorScheme="brand"
-                isLoading={requestAccessMutation.isPending}
+                loading={requestAccessMutation.isPending}
                 loadingText="Sending Request..."
                 isDisabled={!patientAddress}
               >
@@ -237,14 +237,14 @@ const RequestAccess = () => {
                       </Td>
                       <Td>
                         {request.status === 'pending' && (
-                          <HStack spacing={2}>
+                          <HStack gap={2}>
                             <Button
                               size="sm"
                               colorScheme="green"
                               variant="outline"
                               leftIcon={<CheckIcon />}
                               onClick={() => handleRespondToRequest(request.id, true)}
-                              isLoading={respondToRequestMutation.isPending}
+                              loading={respondToRequestMutation.isPending}
                             >
                               Approve
                             </Button>
@@ -254,7 +254,7 @@ const RequestAccess = () => {
                               variant="outline"
                               leftIcon={<CloseIcon />}
                               onClick={() => handleRespondToRequest(request.id, false)}
-                              isLoading={respondToRequestMutation.isPending}
+                              loading={respondToRequestMutation.isPending}
                             >
                               Reject
                             </Button>

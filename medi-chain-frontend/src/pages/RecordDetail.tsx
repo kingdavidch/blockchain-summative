@@ -1,9 +1,15 @@
 import { useParams, Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { useWeb3 } from '../context/Web3Context';
-import { Box, Button, Card, CardBody, CardHeader, Divider, Flex, Heading, IconButton, Spinner, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useToast, VStack, HStack, Badge, useClipboard } from '@chakra-ui/react';
-import { ArrowBackIcon, CopyIcon, DownloadIcon, EditIcon, ExternalLinkIcon, TimeIcon, ViewIcon } from '@chakra-ui/icons';
+import { Box, Button, Flex, Heading, Spinner, Text, VStack, HStack, Badge } from '@chakra-ui/react';
+import { Card, CardBody, CardHeader } from '../components/CardComponents';
+import { ButtonWithIcon } from '../components/ButtonWithIcon';
+import { IconButtonWrapper } from '../components/IconButtonWrapper';
+import { ArrowBackIcon, CopyIcon, DownloadIcon, EditIcon, ExternalLinkIcon, TimeIcon } from '@chakra-ui/icons';
 import { format } from 'date-fns';
+import { useClipboard } from '../hooks/useClipboard';
+import { useToast } from '../hooks/useToast';
+import { Tabs, TabList, Tab, TabPanels, TabPanel } from '../components/TabComponents';
 
 interface MedicalRecord {
   hash: string;
@@ -52,7 +58,6 @@ const RecordDetail = () => {
       title: 'Copied!',
       status: 'info',
       duration: 2000,
-      isClosable: true,
     });
   };
 
@@ -64,7 +69,6 @@ const RecordDetail = () => {
       description: 'This would download the record file in a real application.',
       status: 'info',
       duration: 3000,
-      isClosable: true,
     });
   };
 
@@ -76,7 +80,6 @@ const RecordDetail = () => {
       description: 'This would open the IPFS gateway in a real application.',
       status: 'info',
       duration: 3000,
-      isClosable: true,
     });
   };
 
@@ -104,21 +107,21 @@ const RecordDetail = () => {
 
   return (
     <Box maxW="7xl" mx="auto" py={8} px={4}>
-      <Button
+      <ButtonWithIcon
         leftIcon={<ArrowBackIcon />}
         variant="ghost"
         mb={6}
         onClick={() => navigate(-1)}
       >
         Back to Records
-      </Button>
+      </ButtonWithIcon>
 
       <Flex justify="space-between" align="flex-start" mb={8}>
         <Box>
           <Heading as="h1" size="xl" mb={2}>
             {record.metadata || 'Untitled Record'}
           </Heading>
-          <HStack spacing={4} color="gray.500">
+          <HStack gap={4} color="gray.500">
             <HStack>
               <TimeIcon />
               <Text>
@@ -132,24 +135,24 @@ const RecordDetail = () => {
             </HStack>
           </HStack>
         </Box>
-        <HStack spacing={2}>
-          <Button
+        <HStack gap={2}>
+          <ButtonWithIcon
             leftIcon={<DownloadIcon />}
             variant="outline"
             onClick={handleDownload}
           >
             Download
-          </Button>
-          <Button
+          </ButtonWithIcon>
+          <ButtonWithIcon
             leftIcon={<ExternalLinkIcon />}
             variant="outline"
             onClick={handleViewOnIPFS}
           >
             View on IPFS
-          </Button>
-          <Button leftIcon={<EditIcon />} colorScheme="brand">
+          </ButtonWithIcon>
+          <ButtonWithIcon leftIcon={<EditIcon />} colorScheme="brand">
             Edit
-          </Button>
+          </ButtonWithIcon>
         </HStack>
       </Flex>
 
@@ -164,7 +167,7 @@ const RecordDetail = () => {
           <TabPanel p={0}>
             <Card>
               <CardBody>
-                <VStack align="stretch" spacing={6}>
+                <VStack align="stretch" gap={6}>
                   <Box>
                     <Text fontSize="sm" color="gray.500" mb={1}>
                       Record ID
@@ -173,12 +176,12 @@ const RecordDetail = () => {
                       <Text fontFamily="mono" fontSize="sm">
                         {record.hash}
                       </Text>
-                      <IconButton
+                      <IconButtonWrapper
                         aria-label="Copy record ID"
                         icon={<CopyIcon />}
                         size="xs"
                         variant="ghost"
-                        onClick={handleCopy}
+                        onClick={onCopy}
                       />
                     </HStack>
                   </Box>
@@ -215,7 +218,7 @@ const RecordDetail = () => {
           <TabPanel p={0}>
             <Card>
               <CardBody>
-                <VStack spacing={4} align="stretch">
+                <VStack gap={4} align="stretch">
                   <Box p={4} borderWidth={1} borderRadius="md">
                     <HStack justify="space-between">
                       <Box>

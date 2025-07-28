@@ -1,4 +1,5 @@
 require("@nomicfoundation/hardhat-toolbox");
+require('@typechain/hardhat');
 require('dotenv').config();
 
 /** @type import('hardhat/config').HardhatUserConfig */
@@ -12,5 +13,9 @@ module.exports = {
       url: process.env.ALCHEMY_URL || "",
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
     },
+  },
+  typechain: {
+    outDir: 'typechain-types',
+    target: 'ethers-v6',
   },
 };

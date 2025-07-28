@@ -1,9 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useWeb3 } from '../context/Web3Context';
-import { Box, Button, Card, CardBody, CardHeader, Flex, FormControl, FormLabel, Heading, Input, Select, Table, Tbody, Td, Text, Th, Thead, Tr, useToast, VStack, Badge } from '@chakra-ui/react';
+import { Box, Button, Flex, Heading, Input, Select, Text, VStack, Badge } from '@chakra-ui/react';
+import { Card, CardBody, CardHeader } from '../components/CardComponents';
+import { FormControl, FormLabel } from '../components/FormComponents';
+import { Table, Thead, Tbody, Tr, Th, Td } from '../components/TableComponents';
 import { SearchIcon, CopyIcon, DeleteIcon } from '@chakra-ui/icons';
+import { useToast } from '../hooks/useToast';
 import { shortenAddress } from '../utils/address';
+import { Select } from '../components/SelectComponent';
+import { ButtonWithIcon } from '../components/ButtonWithIcon';
 
 interface AccessGrant {
   doctor: string;
@@ -46,7 +52,6 @@ const ShareAccess = () => {
           description: 'Failed to load your records.',
           status: 'error',
           duration: 5000,
-          isClosable: true,
         });
         return [];
       }
@@ -70,7 +75,6 @@ const ShareAccess = () => {
           description: 'Failed to load access grants.',
           status: 'error',
           duration: 5000,
-          isClosable: true,
         });
         return [];
       }
@@ -92,7 +96,6 @@ const ShareAccess = () => {
         description: 'Access granted successfully!',
         status: 'success',
         duration: 5000,
-        isClosable: true,
       });
       setDoctorAddress('');
       refetchGrants();
@@ -103,7 +106,6 @@ const ShareAccess = () => {
         description: error.message || 'Failed to grant access',
         status: 'error',
         duration: 5000,
-        isClosable: true,
       });
     },
   });
@@ -122,7 +124,6 @@ const ShareAccess = () => {
         description: 'Access revoked successfully!',
         status: 'success',
         duration: 5000,
-        isClosable: true,
       });
       refetchGrants();
     },
@@ -132,7 +133,6 @@ const ShareAccess = () => {
         description: error.message || 'Failed to revoke access',
         status: 'error',
         duration: 5000,
-        isClosable: true,
       });
     },
   });
@@ -158,7 +158,6 @@ const ShareAccess = () => {
       title: 'Copied!',
       status: 'info',
       duration: 2000,
-      isClosable: true,
     });
   };
 
@@ -174,7 +173,7 @@ const ShareAccess = () => {
         </CardHeader>
         <CardBody>
           <form onSubmit={handleGrantAccess}>
-            <VStack spacing={6} align="stretch">
+            <VStack gap={6} align="stretch">
               <FormControl isRequired>
                 <FormLabel>Select Record to Share</FormLabel>
                 <Select
@@ -204,9 +203,9 @@ const ShareAccess = () => {
               <Button
                 type="submit"
                 colorScheme="brand"
-                isLoading={grantAccessMutation.isPending}
+                loading={grantAccessMutation.isPending}
                 loadingText="Granting Access..."
-                isDisabled={!doctorAddress || !selectedRecord}
+                disabled={!doctorAddress || !selectedRecord}
               >
                 Grant Access
               </Button>
@@ -261,16 +260,16 @@ const ShareAccess = () => {
                         </Badge>
                       </Td>
                       <Td>
-                        <Button
+                        <ButtonWithIcon
                           size="sm"
                           colorScheme="red"
                           variant="outline"
                           leftIcon={<DeleteIcon />}
                           onClick={() => handleRevokeAccess(grant.doctor)}
-                          isLoading={revokeAccessMutation.isPending}
+                          loading={revokeAccessMutation.isPending}
                         >
                           Revoke
-                        </Button>
+                        </ButtonWithIcon>
                       </Td>
                     </Tr>
                   ))}

@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { ethers } from 'ethers';
 import detectEthereumProvider from '@metamask/detect-provider';
-import { MedicalRecords__factory } from '../../medi-chain/typechain-types';
+import { MedicalRecords__factory } from '../../../medi-chain/typechain-types';
 import { CONTRACT_ADDRESS } from '../config';
 
 type Web3ContextType = {

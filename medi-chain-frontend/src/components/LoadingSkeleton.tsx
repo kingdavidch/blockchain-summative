@@ -10,7 +10,7 @@ interface LoadingSkeletonProps {
 
 export const CardSkeleton = ({ count = 1, height = '120px', spacing = 4 }) => {
   return (
-    <VStack spacing={spacing} align="stretch">
+    <VStack gap={spacing} align="stretch">
       {[...Array(count)].map((_, i) => (
         <Skeleton 
           key={i} 
@@ -26,7 +26,7 @@ export const CardSkeleton = ({ count = 1, height = '120px', spacing = 4 }) => {
 
 export const ListSkeleton = ({ count = 3, height = '60px', spacing = 2 }) => {
   return (
-    <VStack spacing={spacing} align="stretch">
+    <VStack gap={spacing} align="stretch">
       {[...Array(count)].map((_, i) => (
         <Skeleton 
           key={i} 
@@ -42,9 +42,9 @@ export const ListSkeleton = ({ count = 3, height = '60px', spacing = 2 }) => {
 
 export const TableSkeleton = ({ rows = 5, columns = 4, height = '40px', spacing = 2 }) => {
   return (
-    <VStack spacing={spacing} align="stretch">
+    <VStack gap={spacing} align="stretch">
       {/* Header */}
-      <HStack spacing={spacing}>
+      <HStack gap={spacing}>
         {[...Array(columns)].map((_, i) => (
           <Skeleton 
             key={`header-${i}`}
@@ -58,7 +58,7 @@ export const TableSkeleton = ({ rows = 5, columns = 4, height = '40px', spacing 
       
       {/* Rows */}
       {[...Array(rows)].map((_, rowIndex) => (
-        <HStack key={rowIndex} spacing={spacing}>
+        <HStack key={rowIndex} gap={spacing}>
           {[...Array(columns)].map((_, colIndex) => (
             <Skeleton 
               key={`row-${rowIndex}-col-${colIndex}`}
@@ -83,7 +83,7 @@ export const LoadingSkeleton = ({
   variant = 'text',
 }: LoadingSkeletonProps) => {
   return (
-    <VStack spacing={spacing} align="stretch">
+    <VStack gap={spacing} align="stretch">
       {[...Array(count)].map((_, i) => (
         <Skeleton
           key={i}

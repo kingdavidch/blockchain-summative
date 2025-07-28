@@ -175,7 +175,7 @@ const AddRecord = () => {
         </CardHeader>
         <CardBody>
           <form onSubmit={handleSubmit}>
-            <VStack spacing={6} align="stretch">
+            <VStack gap={6} align="stretch">
               <FormControl isRequired>
                 <FormLabel>Record Title</FormLabel>
                 <Input
@@ -296,7 +296,7 @@ const AddRecord = () => {
                 <Button
                   type="submit"
                   colorScheme="brand"
-                  isLoading={addRecordMutation.isPending || isUploading}
+                  loading={addRecordMutation.isPending || isUploading}
                   loadingText={isUploading ? 'Uploading...' : 'Saving...'}
                   isDisabled={!formData.file || !formData.title}
                 >

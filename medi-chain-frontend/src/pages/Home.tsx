@@ -7,7 +7,7 @@ const Home = () => {
 
   return (
     <Container maxW="7xl" py={16}>
-      <Stack direction={{ base: 'column', lg: 'row' }} spacing={16} align="center">
+      <Stack direction={{ base: 'column', lg: 'row' }} gap={16} align="center">
         <Box flex={1}>
           <Heading as="h1" size="3xl" mb={6} fontWeight="extrabold" lineHeight="1.2">
             Take Control of Your
@@ -19,7 +19,7 @@ const Home = () => {
             Securely store, manage, and share your medical records on the blockchain. 
             Take control of your health data with complete privacy and security.
           </Text>
-          <Stack direction={{ base: 'column', sm: 'row' }} spacing={4}>
+          <Stack direction={{ base: 'column', sm: 'row' }} gap={4}>
             {isConnected ? (
               <Button
                 as={RouterLink}
@@ -82,7 +82,7 @@ const Home = () => {
               borderWidth="1px"
               borderColor="gray.100"
             >
-              <VStack spacing={6} align="stretch">
+              <VStack gap={6} align="stretch">
                 <Box>
                   <Text fontSize="sm" color="gray.500" mb={1}>
                     Patient Record
@@ -128,7 +128,7 @@ const Home = () => {
         <Heading textAlign="center" mb={12}>
           Why Choose MediChain?
         </Heading>
-        <Stack direction={{ base: 'column', md: 'row' }} spacing={8}>
+        <Stack direction={{ base: 'column', md: 'row' }} gap={8}>
           {[
             {
               title: 'Secure & Private',

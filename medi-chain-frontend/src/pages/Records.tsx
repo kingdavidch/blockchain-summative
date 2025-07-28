@@ -1,8 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useWeb3 } from '../context/Web3Context';
-import { MedicalRecords__factory } from '../../medi-chain/typechain-types';
-import { Box, Button, Card, CardBody, CardHeader, Flex, Heading, Text, VStack, useToast, HStack, Badge, Input, InputGroup, InputLeftElement, InputRightElement, IconButton, Spinner } from '@chakra-ui/react';
+import { MedicalRecords__factory } from '../../../medi-chain/typechain-types';
+import { Box, Button, Flex, Heading, Text, VStack, HStack, Badge, Input, InputGroup, Spinner } from '@chakra-ui/react';
+import { Card, CardBody, CardHeader } from '../components/CardComponents';
+import { IconButtonWrapper } from '../components/IconButtonWrapper';
+import { useToast } from '../hooks/useToast';
+import { InputGroup, InputLeftElement, InputRightElement } from '../components/InputComponents';
+import { ButtonWithIcon } from '../components/ButtonWithIcon';
 import { SearchIcon, AddIcon } from '@chakra-ui/icons';
 import { Link as RouterLink } from 'react-router-dom';
 
@@ -47,7 +52,6 @@ const Records = () => {
           description: 'Failed to load medical records.',
           status: 'error',
           duration: 5000,
-          isClosable: true,
         });
         return [];
       }
@@ -106,9 +110,9 @@ const Records = () => {
           </Heading>
           <Text color="gray.600">View and manage your medical records on the blockchain.</Text>
         </Box>
-        <Button as={RouterLink} to="/records/new" leftIcon={<AddIcon />} colorScheme="brand">
+        <ButtonWithIcon as={RouterLink} to="/records/new" leftIcon={<AddIcon />} colorScheme="brand">
           Add Record
-        </Button>
+        </ButtonWithIcon>
       </Flex>
 
       <Card mb={8}>
@@ -125,7 +129,7 @@ const Records = () => {
             />
             {searchTerm && (
               <InputRightElement width="4.5rem">
-                <IconButton
+                <IconButtonWrapper
                   h="1.75rem"
                   size="sm"
                   onClick={() => setSearchTerm('')}
@@ -153,13 +157,13 @@ const Records = () => {
           </CardBody>
         </Card>
       ) : (
-        <VStack spacing={4} align="stretch">
+        <VStack gap={4} align="stretch">
           {filteredRecords.map((record, index) => (
             <Card key={index} _hover={{ transform: 'translateY(-2px)', boxShadow: 'md' }} transition="all 0.2s">
               <CardBody>
                 <Flex justify="space-between" align="flex-start">
                   <Box>
-                    <HStack spacing={2} mb={2}>
+                    <HStack gap={2} mb={2}>
                       <Text fontWeight="semibold" fontSize="lg">
                         {record.metadata || 'Untitled Record'}
                       </Text>
@@ -170,7 +174,7 @@ const Records = () => {
                     <Text fontSize="sm" color="gray.500" mb={2}>
                       {formatDate(record.timestamp)}
                     </Text>
-                    <Text fontSize="xs" fontFamily="mono" color="gray.600" noOfLines={1}>
+                    <Text fontSize="xs" fontFamily="mono" color="gray.600" overflow="hidden" textOverflow="ellipsis" whiteSpace="nowrap">
                       {record.hash}
                     </Text>
                   </Box>
